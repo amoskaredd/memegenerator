@@ -61,7 +61,7 @@ const app = express()
   let q = req.query.query
   if (!q) return res.json({ status: false, creator: `${creator}`, message: 'Input parameter query' })
   try {
-  await ttp(q).then((buffer) =>{
+  await ttp(q).then(async(buffer) =>{
     let result = await upfile(buffer)
 		res.json({
     status: true,
@@ -82,7 +82,7 @@ const app = express()
   let q = req.query.query
   if (!q) return res.json({ status: false, creator: `${creator}`, message: 'Input parameter query' })
   try {
-  await attp(q).then((buffer) =>{
+  await attp(q).then(async(buffer) =>{
     let result = await upfile(buffer)
     res.json({
     status: true,
@@ -108,7 +108,7 @@ const app = express()
     if (!bawah) return res.json({ status: false, creator: `${creator}`, message: 'Input parameter bawah' })
     try {
         let img = await getBuffer(url)
-    await generateMeme(img, atas, bawah).then((buffer) =>{
+    await generateMeme(img, atas, bawah).then(async(buffer) =>{
     let result = await upfile(buffer)
     res.json({
     status: true,
