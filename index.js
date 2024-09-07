@@ -52,30 +52,9 @@ const app = express()
   endpoint: {
     attp: `${baseUrl}/attp?query=TRASH`,
     ttp: `${baseUrl}/ttp?query=TRASH`,
-    meme: `${baseUrl}/meme?url=YOUR-URL&atas=text+atas&bawah=text+bawah`,
+    meme: `${baseUrl}/meme?url=YOUR-IMAGE-URL&atas=text+atas&bawah=text+bawah`,
   },
 })
-})
-
-.get('/upscale4x', async (req, res) => {
-  let q = req.query.url
-  if (!q) return res.json({ status: false, creator: `${creator}`, message: 'Input parameter url' })
-  if(!isUrl(q)) return res.json({ status: false, creator: `${creator}`, message: 'Url tidak valid' })
-  try {
-  const result = await upscale4x(q);
-    
-  res.json({
-    status: true,
-    creator: `${creator}`,
-    result
-  })
-} catch (err) {
-  res.json({
-    status: false,
-    creator: `${creator}`,
-    message: err
-  })
-}
 })
 
 .get('/ttp', async (req, res) => {
